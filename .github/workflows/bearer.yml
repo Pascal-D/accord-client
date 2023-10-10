@@ -26,8 +26,10 @@ jobs:
         id: report
         uses: bearer/bearer-action@v2
         with:
++         # Include these two options
           format: sarif
           output: results.sarif
++       # Add a new step to upload the SARIF file
       - name: Upload SARIF file
         if: always()
         uses: github/codeql-action/upload-sarif@v2
