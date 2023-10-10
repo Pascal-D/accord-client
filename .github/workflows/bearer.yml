@@ -25,3 +25,11 @@ jobs:
       - name: Run Report
         id: report
         uses: bearer/bearer-action@v2
+        with:
+          format: sarif
+          output: results.sarif
+      - name: Upload SARIF file
+        if: always()
+        uses: github/codeql-action/upload-sarif@v2
+        with:
+          sarif_file: results.sarif
