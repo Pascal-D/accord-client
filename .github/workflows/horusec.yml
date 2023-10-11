@@ -14,4 +14,9 @@ jobs:
     - name: Running Horusec Security
       run: |
         curl -fsSL https://raw.githubusercontent.com/ZupIT/horusec/main/deployments/scripts/install.sh | bash -s latest
-        horusec start -D -p="./" -e="true" -o="sarif"    
+        horusec start -D -p="./" -e="true" -o="sarif" -O="horusec.sarif"    
+    - name: Upload SARIF file
+      uses: github/codeql-action/upload-sarif@v2
+      with:
+        sarif_file: horusec.sarif
+      if: always()
